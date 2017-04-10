@@ -8,7 +8,7 @@ char buf[512];
 int
 main(int argc, char *argv[])
 {
-  // file descriptors in, our, # of bytes copied
+  // file descriptors in, out, # of bytes copied
   int fdi, fdo, n;
 
   if(argc <= 2){
@@ -26,6 +26,7 @@ main(int argc, char *argv[])
 	exit();
   }
 
+  //copy loop
   while ((n=read(fdi, buf, sizeof(buf))) > 0) {
 	write(fdo, buf, n);
   }

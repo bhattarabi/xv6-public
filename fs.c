@@ -360,6 +360,7 @@ bmap(struct inode *ip, uint bn)
   if(bn < NDIRECT){
     if((addr = ip->addrs[bn]) == 0)
       ip->addrs[bn] = addr = balloc(ip->dev);
+//    cprintf("balloc returned: %x\n", addr);
     return addr;
   }
   bn -= NDIRECT;
@@ -372,6 +373,7 @@ bmap(struct inode *ip, uint bn)
     a = (uint*)bp->data;
     if((addr = a[bn]) == 0){
       a[bn] = addr = balloc(ip->dev);
+//      cprintf("balloc returned: %d\n", addr);
       log_write(bp);
     }
     brelse(bp);
@@ -470,6 +472,8 @@ writei(struct inode *ip, char *src, uint off, uint n)
   uint tot, m;
   struct buf *bp;
 
+  uint foo;
+
   if(ip->type == T_DEV){
     if(ip->major < 0 || ip->major >= NDEV || !devsw[ip->major].write)
       return -1;
@@ -482,7 +486,9 @@ writei(struct inode *ip, char *src, uint off, uint n)
     return -1;
 
   for(tot=0; tot<n; tot+=m, off+=m, src+=m){
-    bp = bread(ip->dev, bmap(ip, off/BSIZE));
+    foo = bmap(ip, off/BSIZE);
+    bp = bread(ip->dev, foo);
+    cprintf("balloc returned: %x\n", foo);
     m = min(n - tot, BSIZE - off%BSIZE);
     memmove(bp->data + off%BSIZE, src, m);
     log_write(bp);
