@@ -1,0 +1,15 @@
+login.c 	new file
+defs.h		defs for login.c
+syscall.h	SYS_swtchusr
+
+
+plan:
+1. implement addusr (needs current user to be root)
+	* keep nextUid in file /nextUid
+2. add uid field to proc
+3. give file ownership to user
+	* add uid field to inode and dinode (possibly others??)
+4. for all file manipulation commands (open, close, read) implement user verification
+	* in ialloc: if type == file, then also set dip's uid field to proc's uid field
+	* readi: if ip->uid != proc->uid, then panic
+	* writei: if ip->uid != proc->uid, then panic

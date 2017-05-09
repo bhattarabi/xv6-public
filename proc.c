@@ -162,6 +162,7 @@ fork(void)
   // Clear %eax so that fork returns 0 in the child.
   np->tf->eax = 0;
 
+  np->uid = proc->uid;
   for(i = 0; i < NOFILE; i++)
     if(proc->ofile[i])
       np->ofile[i] = filedup(proc->ofile[i]);
@@ -482,4 +483,13 @@ procdump(void)
     }
     cprintf("\n");
   }
+}
+
+int
+sw_usr(int n)
+{
+	acquire(&ptable.lock);
+	proc->uid = n;
+	release(&ptable.lock);
+	return 22;
 }

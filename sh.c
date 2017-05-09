@@ -157,6 +157,10 @@ main(void)
 
   // Read and run input commands.
   while(getcmd(buf, sizeof(buf)) >= 0){
+    if (buf[0] == 'l' && buf[1] == 'o' && buf[2] == 'g' && buf[3] == 'o'
+    	&& buf[4] == 'u' && buf[5] == 't'){
+	exit();
+    }
     if(buf[0] == 'c' && buf[1] == 'd' && buf[2] == ' '){
       // Chdir must be called by the parent, not the child.
       buf[strlen(buf)-1] = 0;  // chop \n

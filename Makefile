@@ -137,7 +137,7 @@ tags: $(OBJS) entryother.S _init
 vectors.S: vectors.pl
 	perl vectors.pl > vectors.S
 
-ULIB = ulib.o usys.o printf.o umalloc.o
+ULIB = ulib.o usys.o printf.o umalloc.o auth.o
 
 _%: %.o $(ULIB)
 	$(LD) $(LDFLAGS) -N -e main -Ttext 0 -o $@ $^
@@ -160,6 +160,7 @@ mkfs: mkfs.c fs.h
 .PRECIOUS: %.o
 
 UPROGS=\
+	_auth\
 	_cat\
 	_echo\
 	_forktest\
@@ -175,6 +176,7 @@ UPROGS=\
 	_usertests\
 	_wc\
 	_login\
+	_addusr\
 	_make_users\
 	_zombie\
 

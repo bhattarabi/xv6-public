@@ -89,3 +89,19 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
+
+int
+sys_sw_usr(void)
+{
+	int n;
+	argint(0, &n);
+	if (n<0)
+		return -1;
+	return sw_usr(n);
+}
+
+int
+sys_getUid(void)
+{
+	return proc->uid;
+}
