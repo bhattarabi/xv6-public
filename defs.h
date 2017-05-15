@@ -116,7 +116,7 @@ void            userinit(void);
 int             wait(void);
 void            wakeup(void*);
 void            yield(void);
-int		sw_usr(int);
+int		setUid(int);
 int		getUid(void);
 
 // swtch.S

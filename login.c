@@ -37,8 +37,8 @@ main()
 		exit();
 	}
 
-	sw_usr(uid);
-	printf(1, "uid:%d\n", getUid());
+	setUid(uid);
+	printf(1, "username accepted.\nuid:%d\n", getUid());
 	pid = fork();
 	if (pid ==0)
 		exec("sh", argv);

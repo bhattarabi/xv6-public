@@ -486,10 +486,10 @@ procdump(void)
 }
 
 int
-sw_usr(int n)
+setUid(int id)
 {
 	acquire(&ptable.lock);
-	proc->uid = n;
+	proc->uid = id;
 	release(&ptable.lock);
 	return 22;
 }

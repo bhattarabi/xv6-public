@@ -38,5 +38,5 @@ void* malloc(uint);
 void free(void*);
 int atoi(const char*);
 
-int sw_usr(int);
+int setUid(int);
 int getUid(void);

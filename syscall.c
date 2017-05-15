@@ -98,7 +98,7 @@ extern int sys_unlink(void);
 extern int sys_wait(void);
 extern int sys_write(void);
 extern int sys_uptime(void);
-extern int sys_sw_usr(void);
+extern int sys_setUid(void);
 extern int sys_getUid(void);
 
 static int (*syscalls[])(void) = {
@@ -123,7 +123,7 @@ static int (*syscalls[])(void) = {
 [SYS_link]    sys_link,
 [SYS_mkdir]   sys_mkdir,
 [SYS_close]   sys_close,
-[SYS_sw_usr]  sys_sw_usr,
+[SYS_setUid]  sys_setUid,
 [SYS_getUid]  sys_getUid,
 };
 

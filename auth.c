@@ -65,12 +65,6 @@ lookupUser(char* uname)
 			if (strcmp(uname, uname_valid) != 0){
 				while (buf[0]!='\n')
 					read(fd, buf, 1);
-					
-				printf(1, "j=%d\n", j);
-				printf(1, uname);
-				printf(1, "yyy\n");
-				printf(1, uname_valid);
-				printf(1, "xxx\n");
 				j =0;
 			}
 			else{

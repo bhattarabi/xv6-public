@@ -91,13 +91,13 @@ sys_uptime(void)
 }
 
 int
-sys_sw_usr(void)
+sys_setUid(void)
 {
 	int n;
 	argint(0, &n);
 	if (n<0)
 		return -1;
-	return sw_usr(n);
+	return setUid(n);
 }
 
 int
